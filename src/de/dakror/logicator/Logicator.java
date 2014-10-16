@@ -1,9 +1,11 @@
 package de.dakror.logicator;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 
-import javax.swing.BoxLayout;
+import javax.swing.DefaultButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -43,6 +45,7 @@ public class Logicator extends JFrame
 		setLayout(new BorderLayout());
 		
 		content = new JPanel(null);
+		content.setBackground(Color.white);
 		JScrollPane wrapper = new JScrollPane(content, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		add(wrapper, BorderLayout.CENTER);
 		
@@ -50,9 +53,22 @@ public class Logicator extends JFrame
 		addGate(8, 4, new Lever());
 		
 		tools = new JPanel();
-		tools.setLayout(new BoxLayout(tools, BoxLayout.X_AXIS));
+		tools.setLayout(new FlowLayout());
 		tools.setPreferredSize(new Dimension(1, 60));
+		
+		addGateToToolbar(new Button());
+		addGateToToolbar(new Lever());
+		
 		add(tools, BorderLayout.SOUTH);
+	}
+	
+	public void addGateToToolbar(Gate g)
+	{
+		g.setPreferredSize(g.getSize());
+		g.setEnabled(false);
+		g.setModel(new DefaultButtonModel());
+		
+		tools.add(g);
 	}
 	
 	public void addGate(int x, int y, Gate g)

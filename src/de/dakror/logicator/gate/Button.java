@@ -1,5 +1,6 @@
 package de.dakror.logicator.gate;
 
+import java.awt.Dimension;
 import java.awt.Font;
 
 import de.dakror.logicator.Logicator;
@@ -15,6 +16,7 @@ public class Button extends Gate
 		
 		setBorder(null);
 		setSize(Logicator.gridSize * 3, Logicator.gridSize * 3);
+		setPreferredSize(new Dimension(Logicator.gridSize * 3, Logicator.gridSize * 3));
 		addConnection(2, 1, false, "S");
 	}
 }
