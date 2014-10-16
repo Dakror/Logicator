@@ -7,6 +7,11 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
+
+import de.dakror.logicator.gate.Button;
+import de.dakror.logicator.gate.Gate;
+import de.dakror.logicator.gate.Lever;
 
 /**
  * @author Dakror
@@ -41,10 +46,8 @@ public class Logicator extends JFrame
 		JScrollPane wrapper = new JScrollPane(content, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		add(wrapper, BorderLayout.CENTER);
 		
-		Gate g = new Gate();
-		g.setBounds(gridSize, gridSize, gridSize * 3, gridSize * 3);
-		g.addConnection(0, 0, true, "A");
-		content.add(g);
+		addGate(1, 4, new Button());
+		addGate(8, 4, new Lever());
 		
 		tools = new JPanel();
 		tools.setLayout(new BoxLayout(tools, BoxLayout.X_AXIS));
@@ -52,8 +55,22 @@ public class Logicator extends JFrame
 		add(tools, BorderLayout.SOUTH);
 	}
 	
+	public void addGate(int x, int y, Gate g)
+	{
+		g.setBounds(x * gridSize, y * gridSize, g.getWidth(), g.getHeight());
+		content.add(g);
+	}
+	
 	public static void main(String[] args)
 	{
+		try
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		new Logicator();
 	}
 }

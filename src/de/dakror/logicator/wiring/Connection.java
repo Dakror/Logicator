@@ -1,4 +1,4 @@
-package de.dakror.logicator;
+package de.dakror.logicator.wiring;
 
 import javax.swing.JLabel;
 
